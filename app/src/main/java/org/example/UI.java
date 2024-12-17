@@ -11,12 +11,12 @@ public class UI {
 
     public void displayMenu(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println(spotify.songs.size());
         while(true) {
             System.out.println("""
                     1. View Top Songs
                     2. Search Particular Song
-                    3. Exit App
+                    3. View Top Songs for a particular artist
+                    4. Exit App
                     """);
 
             System.out.println("Enter your option: ");
@@ -31,7 +31,7 @@ public class UI {
                         if (topSongs == -1) {
                             break;
                         }
-                        this.spotify.topSong(topSongs);
+                        this.spotify.topSong(topSongs, null);
                     }
                 }
                 case "2" -> {
@@ -46,6 +46,26 @@ public class UI {
                     }
                 }
                 case "3" -> {
+                    int topSongs;
+                    String artist;
+                    while (true) {
+                        System.out.println("Enter artist, or enter 'exit' to exit");
+                        artist = scanner.nextLine();
+                        if (artist.equals("exit")) {
+                            break;
+                        }
+                        while (true) {
+                            System.out.println("Enter the number of top songs for " + artist + ", or enter '-1' to exit");
+                            topSongs = scanner.nextInt();
+                            if (topSongs == -1) {
+                                break;
+                            }
+                            this.spotify.topSong(topSongs, artist);
+                        }
+                        break;
+                    }
+                }
+                case "4" -> {
                     return;
                 }
                 default -> System.out.println("Invalid Input");
