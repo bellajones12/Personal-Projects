@@ -15,7 +15,7 @@ public class UI {
             System.out.println("""
                     1. View Top Songs
                     2. Search Particular Song
-                    3. View Top Songs for a particular artist
+                    3. View Stats for a Particular Artist
                     4. Exit App
                     """);
 
@@ -54,6 +54,7 @@ public class UI {
                         if (artist.equals("exit")) {
                             break;
                         }
+                        this.spotify.artistStats(artist);
                         while (true) {
                             System.out.println("Enter the number of top songs for " + artist + ", or enter '-1' to exit");
                             topSongs = scanner.nextInt();

@@ -96,4 +96,19 @@ public class Spotify {
         System.out.println(songTitle + ", " + artist + " has " + totalPlays + " plays with rank " + rank);
     }
 
+//    need to also store artist attributes to make easier
+    public void artistStats(String artist) {
+        int totalMins = 0;
+        for (Song song : songs) {
+            if (song.artist != null) {
+                if (song.artist.equalsIgnoreCase(artist)) {
+//                    System.out.println("song length: " + song.milliseconds + " for a total of " + song.totalListens + " listens");
+                    totalMins += song.totalListens * song.milliseconds;
+                }
+            }
+        }
+        totalMins = totalMins/6000;
+        System.out.println("You listened to " + artist + " for " + totalMins + " minutes, that's equivalent to " + (totalMins/60)/24 + " days!!");
+    }
+
 }
